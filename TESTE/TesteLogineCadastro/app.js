@@ -1,15 +1,11 @@
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
 
-var btnSignin = document.querySelector("#signin");
-var btnSignup = document.querySelector("#signup");
-
-var body = document.querySelector("body");
-
-
-btnSignin.addEventListener("click", function () {
-   body.className = "sign-in-js"; 
+signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
 });
 
-btnSignup.addEventListener("click", function () {
-    body.className = "sign-up-js";
-})
-
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
