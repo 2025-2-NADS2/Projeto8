@@ -10,9 +10,9 @@ Vide tutoriais do PI.
 <a href= "https://www.fecap.br/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhZPrRa89Kma0ZZogxm0pi-tCn_TLKeHGVxywp-LXAFGR3B1DPouAJYHgKZGV0XTEf4AE&usqp=CAU" alt="FECAP - Fundação de Comércio Álvares Penteado" border="0"></a>
 </p>
 
-# Nome do Projeto
+# AlmaTech
 
-## Nome do Grupo
+## Grupo 8
 
 ## Integrantes: <a href="https://www.linkedin.com/in/enzo-minardi/"> Enzo Minardi </a>, <a href="https://www.linkedin.com/in/andreluisdesousa/"> André Luis </a>, <a href=""> João Guilherme </a>, <a href="https://www.linkedin.com/in/samuel-cavalcanti-nunes-coronel-5b6946354/"> Samuel Cavalcanti </a>
 
