@@ -14,7 +14,7 @@ Vide tutoriais do PI.
 
 ## Grupo 8
 
-## Integrantes: <a href="https://www.linkedin.com/in/enzo-minardi/"> Enzo Minardi </a>, <a href="https://www.linkedin.com/in/andreluisdesousa/"> André Luis </a>, <a href=""> João Guilherme </a>, <a href="https://www.linkedin.com/in/samuel-cavalcanti-nunes-coronel-5b6946354/"> Samuel Cavalcanti </a>
+## Integrantes: <a href="https://www.linkedin.com/in/enzo-minardi/"> Enzo Minardi </a>, <a href="https://www.linkedin.com/in/andreluisdesousa/"> André Luis </a>, <a href="https://www.linkedin.com/in/jo%C3%A3o-guilherme-gumiero-de-micheli/"> João Guilherme </a>, <a href="https://www.linkedin.com/in/samuel-cavalcanti-nunes-coronel-5b6946354/"> Samuel Cavalcanti </a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/ronaldo-araujo-pinto-3542811a/">Ronaldo Araujo Pinto</a>, <a href="https://www.linkedin.com/in/francisco-escobar/">Francisco de Souza Escobar</a>, <a href="https://www.linkedin.com/in/jbuesso/">José Carlos Buesso Jr</a>, <a href="https://www.linkedin.com/in/victorbarq/">Victor Bruno Alexander Rosetti de Quiroz</a>, <a href="https://www.linkedin.com/in/eduardo-savino-gomes-77833a10/">Eduardo Savino Gomes</a>
 
