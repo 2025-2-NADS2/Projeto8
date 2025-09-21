@@ -203,6 +203,66 @@ function closeProjectModal() {
     document.body.style.overflow = 'auto';
 }
 
+  // ================================
+  // 📩 FORMULÁRIO DE CONTATO
+  // ================================
+
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", handleContactForm);
+  }
+
+  // Função que envia o formulário de contato para o backend
+  async function handleContactForm(e) {
+    e.preventDefault();
+
+    // Monta objeto com os dados do formulário
+    const formData = {
+      name: document.getElementById("nome").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("telefone").value.trim(),
+      subject: document.getElementById("assunto").value,
+      message: document.getElementById("mensagem").value.trim(),
+    };
+
+    try {
+      // Requisição para o backend (Node/Express)
+      const response = await fetch("http://localhost:5000/api/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Mostra modal de sucesso (caso exista)
+        if (successMessage) {
+          successMessage.classList.add("active");
+          document.body.style.overflow = "hidden";
+
+          setTimeout(() => {
+            successMessage.classList.remove("active");
+            document.body.style.overflow = "auto";
+            contactForm.reset();
+          }, 3000);
+        } else {
+          // Fallback: usa alert se não existir modal
+          alert("✅ " + data.msg);
+          contactForm.reset();
+        }
+      } else {
+        alert("⚠️ " + (data.msg || "Erro ao enviar a mensagem."));
+      }
+    } catch (error) {
+      console.error("Erro ao enviar:", error);
+      alert("❌ Erro de conexão com o servidor.");
+    }
+  }
+;
+
 // Handle contact form submission
 function handleContactForm(e) {
     e.preventDefault();
