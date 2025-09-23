@@ -21,9 +21,7 @@ Vide tutoriais do PI.
 ## Descrição
 
 <p align="center">
-<img src="https://pix4free.org/assets/library/2021-01-20/originals/game.jpg" alt="NOME DO JOGO" border="0">
-  Game by <a href="http://www.nyphotographic.com/">Nick Youngson</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
-</p>
+<img <img width="225" height="225" alt="logo" src="https://github.com/user-attachments/assets/e2598568-a372-4aee-a94a-9e7f4ab189a9" />
 
 
  Este projeto consiste em um site responsivo desenvolvido para um instituto de caridade como parte de um trabalho acadêmico da FECAP. O objetivo é oferecer uma plataforma acessível que apresente a instituição, suas iniciativas e meios de participação, incentivando o engajamento da comunidade.
