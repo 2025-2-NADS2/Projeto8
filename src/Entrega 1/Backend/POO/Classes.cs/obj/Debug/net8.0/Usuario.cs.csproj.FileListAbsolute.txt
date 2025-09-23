@@ -1,0 +1,14 @@
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\bin\Debug\net8.0\Usuario.cs.exe
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\bin\Debug\net8.0\Usuario.cs.deps.json
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\bin\Debug\net8.0\Usuario.cs.runtimeconfig.json
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\bin\Debug\net8.0\Usuario.cs.dll
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\bin\Debug\net8.0\Usuario.cs.pdb
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.AssemblyInfoInputs.cache
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.AssemblyInfo.cs
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.csproj.CoreCompileInputs.cache
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.dll
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\refint\Usuario.cs.dll
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.pdb
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\Usuario.cs.genruntimeconfig.cache
+C:\Users\samuc\source\repos\Usuario.cs\Usuario.cs\obj\Debug\net8.0\ref\Usuario.cs.dll
