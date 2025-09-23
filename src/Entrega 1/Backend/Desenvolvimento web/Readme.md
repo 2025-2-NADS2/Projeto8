@@ -1,0 +1,84 @@
+Banco de dados para teste
+CREATE TABLE USUARIO (
+id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL UNIQUE,
+senha VARCHAR(50) NOT NULL,
+telefone VARCHAR(20),
+tipo ENUM('ADMIN', 'DOADOR') NOT NULL,
+data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE CAMPANHA (
+id_campanha INT AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(200) NOT NULL,
+descricao TEXT,
+data_inicio DATE,
+data_fim DATE,
+ativa TINYINT(1) DEFAULT 1 CHECK(ativa IN (0,1))
+);
+
+CREATE TABLE DOACAO (
+id_doacao INT AUTO_INCREMENT PRIMARY KEY,
+id_usuario INT NOT NULL,
+id_campanha INT,
+tipo ENUM('DINHEIRO', 'ROUPAS', 'ALIMENTOS', 'OUTROS') NOT NULL,
+valor DECIMAL(10,2),
+descricao TEXT,
+data_doacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
+FOREIGN KEY (id_campanha) REFERENCES CAMPANHA(id_campanha)
+);
+
+CREATE TABLE DOADOR_CAMPANHA (
+id_usuario INT NOT NULL,
+id_campanha INT NOT NULL,
+data_participacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id_usuario, id_campanha),
+FOREIGN KEY (id_usuario) REFERENCES USUARIO(id_usuario),
+FOREIGN KEY (id_campanha) REFERENCES CAMPANHA(id_campanha)
+);
+
+CREATE TABLE CONTATO (
+id_contato INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL,
+mensagem TEXT NOT NULL,
+data_envio DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE OUVIDORIA (
+id_ouvidoria INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL,
+telefone VARCHAR(20),
+assunto ENUM('Seja um doador', 'Quero ser voluntário', 'Parceria', 'Quero informações', 'Outro assunto') NOT NULL,
+mensagem TEXT NOT NULL,
+data_envio DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE TRANSPARENCIA (
+id_transparencia INT AUTO_INCREMENT PRIMARY KEY,
+id_campanha INT,
+titulo VARCHAR(255) NOT NULL,
+caminho_arquivo VARCHAR(500) NOT NULL,
+nome_original VARCHAR(255),
+tipo_mime VARCHAR(100),
+tamanho_bytes INT,
+data_upload DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (id_campanha) REFERENCES CAMPANHA(id_campanha)
+);
+
+CREATE TABLE ATIVIDADES (
+id_atividade INT AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(255) NOT NULL,
+descricao TEXT,
+data_inicio DATE,
+data_fim DATE,
+responsavel VARCHAR(150),
+data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE ATIVIDADES
+ADD COLUMN id_campanha INT,
+ADD FOREIGN KEY (id_campanha) REFERENCES CAMPANHA(id_campanha);
