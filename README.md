@@ -32,6 +32,7 @@ O site foi construído com foco em usabilidade e design moderno, garantindo adap
 ## 🛠 Estrutura de pastas
 
 -Raiz
+
 |
 |-->documentos
  |-->Entrega 1>
