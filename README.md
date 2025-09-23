@@ -31,20 +31,20 @@ O site foi construído com foco em usabilidade e design moderno, garantindo adap
 
 ## 🛠 Estrutura de pastas
 
--Raiz<br>
-|<br>
-|-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
-|-->executáveis<br>
-  &emsp;|-->windows<br>
-  &emsp;|-->android<br>
-  &emsp;|-->HTML<br>
-|-->imagens<br>
-|-->src<br>
-  &emsp;|-->Backend<br>
-  &emsp;|-->Frontend<br>
-|readme.md<br>
+-Raiz
+|
+|-->documentos
+ |-->Entrega 1>
+
+ |-->Entrega 2>
+
+ |-->README.md>
+
+|-->imagens
+|-->src
+ |-->Backend
+ |-->Frontend
+|readme.md
 
 A pasta raiz contem dois arquivos que devem ser alterados:
 
@@ -62,16 +62,7 @@ Há também 4 pastas que seguem da seguinte forma:
 
 ## 🛠 Instalação
 
-<b>Android:</b>
-
-
-<b>Windows:</b>
-
-
-<b>HTML:</b>
-
 ## 💻 Configuração para Desenvolvimento
-
 
 ## 📋 Licença/License
 
