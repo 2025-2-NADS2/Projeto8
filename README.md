@@ -48,7 +48,9 @@ O site foi construído com foco em usabilidade e design moderno, garantindo adap
 |-->src
 
   |-->Backend
+  
   |-->Frontend
+  
  |readme.md
 
 A pasta raiz contem dois arquivos que devem ser alterados:
