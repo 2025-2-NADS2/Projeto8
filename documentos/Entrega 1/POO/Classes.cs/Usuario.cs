@@ -7,12 +7,16 @@ namespace MeuProjeto_alma
 {
     public class Usuario
     {
+        //criei atributos para usuario onde ele também pode ser adm//
+        
         public bool IsAdm;
         private int id;
         private string nome;
         private string email;
         private int senha;
-
+        
+        //gets e sets dos atributos//
+        
         public String GetNome()
         {
             return nome;
