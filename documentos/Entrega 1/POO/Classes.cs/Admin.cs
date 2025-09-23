@@ -13,6 +13,7 @@ namespace MeuProjeto_alma
         private string nome;
         private string email;
         private int senha;
+        //gets e sets do admin
     public int GetId()
         {
             return id;
