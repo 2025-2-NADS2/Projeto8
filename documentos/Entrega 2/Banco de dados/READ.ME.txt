@@ -1,0 +1,97 @@
+Documento de criação de views
+
+Resumo de doações
+CREATE VIEW vw_resumo_doacoes AS
+SELECT
+u.nome AS nome_doador,
+u.email AS email_doador,
+c.titulo AS titulo_campanha,
+d.tipo AS tipo_doacao,
+d.valor AS valor_doacao,
+d.descricao AS descricao_doacao,
+d.data_doacao
+FROM DOACAO d
+JOIN USUARIO u ON d.id_usuario = u.id_usuario
+LEFT JOIN CAMPANHA c ON d.id_campanha = c.id_campanha;
+SELECT * FROM vw_resumo_doacoes;
+
+Participação dos doadores em uma campanha
+
+CREATE VIEW vw_doador_campanha AS
+SELECT
+u.nome AS nome_doador,
+u.email AS email_doador,
+c.titulo AS titulo_campanha,
+dc.data_participacao
+FROM DOADOR_CAMPANHA dc
+JOIN USUARIO u ON dc.id_usuario = u.id_usuario
+JOIN CAMPANHA c ON dc.id_campanha = c.id_campanha;
+SELECT * FROM vw_doador_campanha;
+
+Formularios recebidos
+
+CREATE VIEW vw_contatos_recebidos AS
+SELECT
+nome,
+email,
+mensagem,
+data_envio
+FROM CONTATO
+ORDER BY data_envio DESC;
+SELECT * FROM vw_contatos_recebidos;
+
+Ouvidoria e tipo de solitação
+
+CREATE VIEW vw_ouvidoria_resumo AS
+SELECT
+nome,
+email,
+telefone,
+assunto,
+mensagem,
+data_envio
+FROM OUVIDORIA
+ORDER BY data_envio DESC;
+SELECT * FROM vw_ouvidoria_resumo;
+
+Transparencia campanhas
+
+CREATE VIEW vw_transparencia_campanhas AS
+SELECT
+c.titulo AS titulo_campanha,
+t.titulo AS titulo_documento,
+t.nome_original,
+t.caminho_arquivo,
+t.tipo_mime,
+t.tamanho_bytes,
+t.data_upload
+FROM TRANSPARENCIA t
+JOIN CAMPANHA c ON t.id_campanha = c.id_campanha;
+SELECT * FROM vw_transparencia_campanhas;
+
+Mostra as campanhas ativas e finalizadas
+
+CREATE VIEW vw_atividades_campanhas AS
+SELECT
+a.titulo AS titulo_atividade,
+a.descricao AS descricao_atividade,
+a.data_inicio,
+a.data_fim,
+a.responsavel,
+c.titulo AS titulo_campanha
+FROM ATIVIDADES a
+LEFT JOIN CAMPANHA c ON a.id_campanha = c.id_campanha;
+SELECT * FROM vw_atividades_campanhas;
+
+Total de doações por campanha
+
+CREATE VIEW vw_total_doacoes_campanha AS
+SELECT
+c.id_campanha,
+c.titulo AS titulo_campanha,
+COUNT(d.id_doacao) AS total_doacoes,
+SUM(d.valor) AS valor_total
+FROM CAMPANHA c
+LEFT JOIN DOACAO d ON c.id_campanha = d.id_campanha
+GROUP BY c.id_campanha, c.titulo;
+SELECT * FROM vw_total_doacoes_campanha;
