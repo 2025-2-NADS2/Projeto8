@@ -1,0 +1,227 @@
+/* GERAIS E FUNDO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #1a2a4e 0%, #2d4575 50%, #1a2a4e 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 24px 36px; /* +20% */
+}
+
+.home-icon {
+  width: 48px; /* +20% */
+  height: 48px; /* +20% */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px; /* +20% */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.home-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.home-icon svg {
+  width: 26px; /* +20% */
+  height: 26px; /* +20% */
+  fill: white;
+}
+
+/* TÍTULO PRINCIPAL  */
+.page-title {
+  text-align: center;
+  font-size: 42px; /* mesmo tamanho do "Bem-Vindo Administrador" */
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+/* CONTAINER PRINCIPAL DOS CARDS */
+.editable-cards-container {
+  display: flex;
+  gap: 42px; /* +20% */
+  padding: 48px; /* +20% */
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* ESTILO DO CARD INDIVIDUAL */
+.editable-card {
+  background: linear-gradient(145deg, #e8e8e8 0%, #f5f5f5 100%);
+  padding: 36px 30px; /* +20% */
+  border-radius: 19px; /* +20% */
+  width: 336px; /* +20% */
+  height: 504px; /* +20% */
+  box-shadow: 0 10px 29px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.editable-card:hover {
+  transform: translateY(-5px);
+}
+
+/* GRUPO DE INPUTS */
+.input-group {
+  margin-bottom: 24px; /* +20% */
+  position: relative;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.96em; /* +20% */
+  color: #666;
+  margin-bottom: 10px; /* +20% */
+  text-align: left;
+  font-weight: 500;
+}
+
+.editable-card input[type="text"],
+.editable-card input[type="file"],
+.editable-card select {
+  width: 100%;
+  padding: 12px 14px; /* +20% */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 7px; /* +20% */
+  color: #333;
+  font-size: 1.08em; /* +20% */
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.editable-card input[type="text"]:focus,
+.editable-card select:focus {
+  border-color: #5a8dff;
+}
+
+.editable-card input::placeholder {
+  color: #999;
+  font-size: 1.02em; /* +20% */
+}
+
+/* FILE INPUT CUSTOMIZADO */
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  left: -9999px;
+}
+
+.file-label {
+  display: block;
+  padding: 12px 14px; /* +20% */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 7px; /* +20% */
+  color: #999;
+  font-size: 1.02em; /* +20% */
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.3s;
+}
+
+.file-label:hover {
+  border-color: #5a8dff;
+}
+
+.file-label.has-file {
+  color: #333;
+}
+
+/* SELECT CUSTOMIZADO */
+.editable-card select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 42px; /* +20% */
+}
+
+/* BOTÕES */
+.card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* +20% */
+  margin-top: auto;
+}
+
+.btn-visualizar,
+.btn-atualizar {
+  width: 100%;
+  background-color: #5a8dff;
+  color: white;
+  border: none;
+  padding: 13px; /* +20% */
+  border-radius: 30px; /* +20% */
+  font-size: 1.02em; /* +20% */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-visualizar:hover,
+.btn-atualizar:hover {
+  background-color: #4a7de5;
+  box-shadow: 0 4px 12px rgba(90, 141, 255, 0.4);
+}
+
+/* STATUS DE UPLOAD */
+#upload-status {
+  margin-top: 18px; /* +20% */
+  font-size: 1.02em; /* +20% */
+  min-height: 24px; /* +20% */
+}
+
+.card-number {
+  font-size: 1.02em; /* +20% */
+  color: #555;
+  margin-bottom: 10px; /* +20% */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.card-title {
+  font-size: 1.32em; /* +20% */
+  color: #222;
+  margin-bottom: 30px; /* +20% */
+  font-weight: bold;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 968px) {
+  .editable-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

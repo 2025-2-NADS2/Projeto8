@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="Tela2ADM.css">
+
+</head>
+<body>
+<div class="header">
+    <a href="Adm-Home.html" class="home-icon" title="Ir para Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+    </a>
+</div>
+
+<!-- CONTAINER PRINCIPAL -->
+<div class="container">
+    <p class="page-title">Edição de PDFs - Transparência</p>
+
+    <main class="editable-cards-container">
+
+        <!-- CARD 1 -->
+        <div class="editable-card">
+            <br>
+            <h2 class="card-title">Relatório Anual 2025</h2>
+            
+            <div class="input-group">
+                <label class="input-label">Anexar PDF</label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="pdf-input" accept="image/*,application/pdf" onchange="updateFileName(this, 'file-label-1')">
+                    <label id="file-label-1" class="file-label" onclick="document.getElementById('pdf-input').click()">
+                        Nenhum arquivo escolhido
+                    </label>
+                </div>
+            </div>
+
+            <div class="card-buttons">
+                <button class="btn-visualizar" onclick="enviarPDF(1)">Enviar PDF</button>
+                <button class="btn-atualizar" onclick="atualizarCard()">Atualizar</button>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="editable-card">
+            <br>
+            <h2 class="card-title">Balanço Financeiro</h2>
+            
+            <div class="input-group">
+                <label class="input-label">Anexar PDF</label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="card2-pdf" accept=".pdf" onchange="updateFileName(this, 'file-label-2')">
+                    <label id="file-label-2" class="file-label" onclick="document.getElementById('card2-pdf').click()">
+                        Nenhum arquivo escolhido
+                    </label>
+                </div>
+            </div>
+
+            <div class="card-buttons">
+                <button class="btn-visualizar" onclick="enviarPDF(2)">Enviar PDF</button>
+                <button class="btn-atualizar">Atualizar</button>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="editable-card">
+            <br>
+            <h2 class="card-title">Relatório Mensal 2025</h2>
+            
+            <div class="input-group">
+                <label class="input-label">Selecione o mês</label>
+                <select id="mes-select">
+                    <option value="">Selecione um mês</option>
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Anexar PDF</label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="card3-pdf" accept=".pdf" onchange="updateFileName(this, 'file-label-3')">
+                    <label id="file-label-3" class="file-label" onclick="document.getElementById('card3-pdf').click()">
+                        Nenhum arquivo escolhido
+                    </label>
+                </div>
+            </div>
+
+            <div class="card-buttons">
+                <button class="btn-visualizar" onclick="enviarPDF(3)">Enviar PDF</button>
+                <button class="btn-atualizar">Atualizar</button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+function updateFileName(input, labelId) {
+    const label = document.getElementById(labelId);
+    if (input.files && input.files.length > 0) {
+        label.textContent = input.files[0].name;
+        label.classList.add('has-file');
+    } else {
+        label.textContent = 'Nenhum arquivo escolhido';
+        label.classList.remove('has-file');
+    }
+}
+
+async function uploadPDF() {
+    const fileInput = document.getElementById('pdf-input');
+    const statusDiv = document.getElementById('upload-status');
+    
+    if (!fileInput.files || fileInput.files.length === 0) {
+        statusDiv.innerHTML = '<p style="color: red;">Selecione um arquivo primeiro!</p>';
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('imagepdf', file);
+
+    try {
+        statusDiv.innerHTML = '<p style="color: blue;">Enviando...</p>';
+        
+        const response = await fetch('http://localhost:3000/api/pdfs', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            statusDiv.innerHTML = `<p style="color: green;">✓ ${data.message}</p>`;
+            console.log('Arquivo enviado:', data.file);
+        } else {
+            statusDiv.innerHTML = `<p style="color: red;">✗ Erro: ${data.error}</p>`;
+        }
+    } catch (error) {
+        statusDiv.innerHTML = `<p style="color: red;">✗ Erro ao enviar: ${error.message}</p>`;
+        console.error('Erro:', error);
+    }
+}
+
+function atualizarCard() {
+    console.log('Atualizando card');
+}
+
+function enviarPDF(cardNumber) {
+    const fileInputId = cardNumber === 1 ? 'pdf-input' : `card${cardNumber}-pdf`;
+    const fileInput = document.getElementById(fileInputId);
+    
+    if (!fileInput.files || fileInput.files.length === 0) {
+        alert('Selecione um arquivo primeiro!');
+        return;
+    }
+
+    const file = fileInput.files[0];
+    console.log('Enviando PDF do card', cardNumber, ':', file.name);
+    
+    if (cardNumber === 1) {
+        uploadPDF();
+    } else {
+        alert(`PDF "${file.name}" pronto para envio do card ${cardNumber}`);
+    }
+}
+</script>
+</body>
+</html>
