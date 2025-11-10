@@ -1,0 +1,1 @@
+Para fazer a leitura do banco de dados, voce terá de rodar o servidor, após isso voce vera os get que ja fazem a leitura do banco e trazem.
