@@ -5,146 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="DOEEE.css">
     <title>Doe Agora</title>
-
 </head>
 <body>
-    <div class="header">
-        <a href="../index.html" class="home-icon" title="Ir para Home">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </svg>
-        </a>
-    </div>
-
     <div class="container">
         <h1>Você tem o poder da mudança. Doe agora e salve vidas.</h1>
-        
+
         <form id="donationForm">
             <div class="form-content">
                 <div class="left-column">
                     <div class="form-group">
-                        <label>Nome Completo<span class="required">*</span></label>
+                        <label>Nome Completo <span style="color:red">*</span></label>
                         <input type="text" name="nome" placeholder="Nome" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label>Telefone<span class="required">*</span></label>
+                        <label>Telefone <span style="color:red">*</span></label>
                         <input type="tel" name="telefone" placeholder="(11) 99999-9999" required>
                     </div>
-
                     <div class="form-group">
-                        <label>Data de Nascimento<span class="required">*</span></label>
+                        <label>Data de Nascimento <span style="color:red">*</span></label>
                         <input type="text" name="nascimento" placeholder="dd/mm/aaaa" required>
                     </div>
-
                     <div class="form-group">
-                        <label>Email<span class="required">*</span></label>
+                        <label>Email <span style="color:red">*</span></label>
                         <input type="email" name="email" placeholder="example@gmail.com" required>
                     </div>
                 </div>
 
                 <div class="right-column">
-                    <p class="donation-text">Insira o valor a<br>ser doado</p>
-                    <input type="text" name="valor" class="amount-input" placeholder="R$ 100,00" required>
+                    <div class="form-group">
+                        <label>Valor a ser doado <span style="color:red">*</span></label>
+                        <input type="text" name="valor" placeholder="R$ 100,00" required>
+                    </div>
                     <button type="submit" class="submit-btn">DOE AGORA</button>
                 </div>
             </div>
         </form>
+        <div id="pixContainer" style="margin-top:20px; display:none;">
+    <h2>PIX gerado!</h2>
+    <p>Clique para copiar o código PIX:</p>
+    <input type="text" id="pixCode" readonly style="width:100%; padding:10px;">
+    <button id="copyPixBtn">Copiar PIX</button>
+    <p style="margin-top:10px;">Ou escaneie o QR Code:</p>
+    <img id="pixQr" alt="QR Code PIX" style="width:200px; height:200px;"/>
+</div>
+
     </div>
 
     <script>
-    // Máscara para telefone
-    const telefoneInput = document.querySelector('input[name="telefone"]');
-    telefoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        
-        if (value.length <= 11) {
-            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-        }
-        
-        e.target.value = value;
-    });
-
-    // Máscara para data de nascimento
-    const nascimentoInput = document.querySelector('input[name="nascimento"]');
-    nascimentoInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        
-        if (value.length <= 8) {
-            value = value.replace(/^(\d{2})(\d)/, '$1/$2');
-            value = value.replace(/^(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
-        }
-        
-        e.target.value = value;
-    });
-
-    // Máscara para valor em reais
-    const valorInput = document.querySelector('input[name="valor"]');
-    valorInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        
-        if (value.length > 0) {
-            value = (parseInt(value) / 100).toFixed(2);
-            value = 'R$ ' + value.replace('.', ',');
-        }
-        
-        e.target.value = value;
-    });
-
-    // Limitar telefone a 15 caracteres
-    telefoneInput.addEventListener('keypress', function(e) {
-        if (this.value.length >= 15 && e.key !== 'Backspace') {
-            e.preventDefault();
-        }
-    });
-
-    // Limitar data a 10 caracteres
-    nascimentoInput.addEventListener('keypress', function(e) {
-        if (this.value.length >= 10 && e.key !== 'Backspace') {
-            e.preventDefault();
-        }
-    });
-
-    // ===========================
-    // Envio do formulário à API
-    // ===========================
-    const donationForm = document.getElementById('donationForm');
-
-    donationForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Captura os valores do formulário
-        const data = {
-            nome: document.querySelector('input[name="nome"]').value,
-            telefone: document.querySelector('input[name="telefone"]').value,
-            nascimento: document.querySelector('input[name="nascimento"]').value,
-            email: document.querySelector('input[name="email"]').value,
-            valor: document.querySelector('input[name="valor"]').value.replace(/[R$\s]/g, '').replace(',', '.')
-        };
-
-        try {
-            // Envia para o backend (ajuste o endpoint conforme seu controlador)
-            const res = await fetch('http://localhost:5104/api/Doacao', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-
-            const json = await res.json();
-
-            if (res.ok) {
-                alert(json.message || 'Obrigado pela sua doação!');
-                donationForm.reset();
-            } else {
-                alert(json.message || 'Erro ao processar a doação.');
+        // Máscara de telefone
+        const telefoneInput = document.querySelector('input[name="telefone"]');
+        telefoneInput.addEventListener('input', e => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
             }
+            e.target.value = value;
+        });
+        telefoneInput.addEventListener('keypress', e => {
+            if (telefoneInput.value.length >= 15 && e.key !== 'Backspace') e.preventDefault();
+        });
 
-        } catch (err) {
-            alert('Erro de conexão: ' + err.message);
+        // Máscara de data
+        const nascimentoInput = document.querySelector('input[name="nascimento"]');
+        nascimentoInput.addEventListener('input', e => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 8) {
+                value = value.replace(/^(\d{2})(\d)/, '$1/$2');
+                value = value.replace(/^(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
+            }
+            e.target.value = value;
+        });
+        nascimentoInput.addEventListener('keypress', e => {
+            if (nascimentoInput.value.length >= 10 && e.key !== 'Backspace') e.preventDefault();
+        });
+
+        // Máscara de valor
+        const valorInput = document.querySelector('input[name="valor"]');
+        valorInput.addEventListener('input', e => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = (parseInt(value) / 100).toFixed(2);
+                value = 'R$ ' + value.replace('.', ',');
+            }
+            e.target.value = value;
+        });
+
+donationForm.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const data = {
+        nome: document.querySelector('input[name="nome"]').value.trim(),
+        telefone: document.querySelector('input[name="telefone"]').value.trim(),
+        nascimento: document.querySelector('input[name="nascimento"]').value.split('/').reverse().join('-'),
+        email: document.querySelector('input[name="email"]').value.trim(),
+        valor: parseFloat(document.querySelector('input[name="valor"]').value.replace(/[R$\s]/g, '').replace(',', '.'))
+    };
+
+    try {
+        const res = await fetch('http://localhost:5104/api/Pagamento/criar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        const json = await res.json();
+
+        console.log('--- DEBUG: JSON retornado ---');
+        console.log(json);
+
+        if (res.ok) {
+            // Mostrar PIX
+            const pixContainer = document.getElementById('pixContainer');
+            const pixCodeInput = document.getElementById('pixCode');
+            const pixQrImg = document.getElementById('pixQr');
+
+            pixCodeInput.value = json.qrCode;
+            pixQrImg.src = "data:image/png;base64," + json.qrCodeBase64;
+
+            pixContainer.style.display = "block";
+
+            document.getElementById('copyPixBtn').onclick = () => {
+                pixCodeInput.select();
+                pixCodeInput.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(pixCodeInput.value);
+                alert("Código PIX copiado!");
+            };
+
+            donationForm.reset();
+        } else {
+            alert(json.message || 'Erro ao processar a doação.');
         }
-    });
-</script>
 
+    } catch (err) {
+        console.error('--- DEBUG: Erro capturado ---', err);
+        alert('Erro de conexão ou processamento: ' + err.message);
+    }
+});
+
+    </script>
 </body>
 </html>
