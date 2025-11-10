@@ -1,0 +1,15 @@
+# Este é um mini tutorial de como baixar alguas coisas importantes de nosso projeto
+
+# Node.js
+# Para instalar o node via PowerShell
+
+Invoke-WebRequest "https://nodejs.org/dist/v22.11.0/node-v22.11.0-x64.msi" -OutFile "$env:USERPROFILE\Downloads\nodejs.msi"
+Start-Process "$env:USERPROFILE\Downloads\nodejs.msi"
+# TESTAR SE ESTA BAIXADO
+node -v
+npm -v
+
+# Dentro do terminal do site de os comandos 
+
+npm i ou npm install
+npm run dev // Para startar a aplicação
