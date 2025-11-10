@@ -1,0 +1,198 @@
+
+    /* GERAIS E FUNDO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a2a4e 0%, #2d4575 50%, #1a2a4e 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 24px 36px;
+    }
+
+    .home-icon {
+      width: 48px;
+      height: 48px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .home-icon:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .home-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: white;
+    }
+
+    /* TÍTULO PRINCIPAL */
+    .page-title {
+      text-align: center;
+      font-size: 42px;
+      color: white;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .container {
+      width: 100%;
+    }
+
+    .cards-container {
+      display: flex;
+      gap: 25px;
+      padding: 48px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* ===== CARDS (NÃO ALTERADO) ===== */
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 350px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 3px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      background-color: #fafbfc;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #0078ff;
+      background-color: #fff;
+    }
+
+    textarea {
+      resize: none;
+      height: 70px;
+    }
+
+    .char-count {
+      font-size: 12px;
+      color: #777;
+      text-align: right;
+      margin-top: -6px;
+      transition: color 0.3s;
+    }
+
+    .char-count.limit {
+      color: red;
+      font-weight: 600;
+    }
+
+    .limit-msg {
+      font-size: 12px;
+      color: red;
+      text-align: right;
+      display: none;
+      margin-top: -4px;
+    }
+
+    .limit-msg.show {
+      display: block;
+    }
+
+    .upload {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    input[type="file"] {
+      border: 1px dashed #0078ff;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: #f8faff;
+      font-size: 13px;
+      cursor: pointer;
+      color: #555;
+      transition: 0.3s;
+    }
+
+    input[type="file"]:hover {
+      background-color: #eaf3ff;
+    }
+
+    button {
+      background: #0078ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 8px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #005fcc;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 968px) {
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 90%;
+      }
+    }
