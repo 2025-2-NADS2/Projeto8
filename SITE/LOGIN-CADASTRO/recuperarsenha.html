@@ -98,7 +98,7 @@
 
       try {
         // Buscar usuário pelo e-mail
-        const res = await fetch(`http://localhost:5104/api/Usuario/buscar-por-email?email=${encodeURIComponent(userEmail)}`, {
+        const res = await fetch(`http://localhost:5104/api/Usuario/email/${encodeURIComponent(userEmail)}`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
         });
@@ -139,8 +139,8 @@
 
       try {
         // Fazer update da senha no banco de dados
-        const res = await fetch('http://localhost:5104/api/Usuario/atualizar-senha', {
-          method: 'PUT',
+        const res = await fetch(`http://localhost:5104/api/Usuario/reset-senha/${encodeURIComponent(userEmail)}`, {
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
             email: userEmail, 
@@ -151,7 +151,7 @@
         if (res.ok) {
           showAlert(passwordAlert, '✅ Senha redefinida com sucesso!', 'success');
           setTimeout(() => {
-            window.location.href = '../LOGIN/Login.html';
+            window.location.href = '../LOGIN-CADASTRO/Login.html';
           }, 2000);
         } else {
           const json = await res.json();

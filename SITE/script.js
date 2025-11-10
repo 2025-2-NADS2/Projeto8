@@ -203,65 +203,96 @@ function closeProjectModal() {
     document.body.style.overflow = 'auto';
 }
 
-//   // ================================
-//   // 📩 FORMULÁRIO DE CONTATO
-//   // ================================
+// ================================
+// 📩 FORMULÁRIO DE CONTATO
+// ================================
+document.addEventListener("DOMContentLoaded", () => {
+  // Busca os elementos no DOM
+  const contactForm = document.getElementById("contactForm");
+  const successMessage = document.getElementById("successMessage");
 
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", handleContactForm);
+  // Segurança: se não existir o formulário, sai (evita erros)
+  if (!contactForm) {
+    console.warn("Formulário #contactForm não encontrado no DOM.");
+    return;
   }
 
   // Função que envia o formulário de contato para o backend
   async function handleContactForm(e) {
     e.preventDefault();
 
-    // Monta objeto com os dados do formulário
+    // Pega os valores com checagem de existência (evita acessar .value de null)
+    const nomeEl = document.getElementById("nome");
+    const emailEl = document.getElementById("email");
+    const telefoneEl = document.getElementById("telefone");
+    const assuntoEl = document.getElementById("assunto");
+    const mensagemEl = document.getElementById("mensagem");
+
     const formData = {
-      name: document.getElementById("nome").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      phone: document.getElementById("telefone").value.trim(),
-      subject: document.getElementById("assunto").value,
-      message: document.getElementById("mensagem").value.trim(),
+      nome: nomeEl ? nomeEl.value.trim() : "",
+      email: emailEl ? emailEl.value.trim() : "",
+      telefone: telefoneEl ? telefoneEl.value.trim() : "",
+      assunto: assuntoEl ? assuntoEl.value : "",
+      mensagem: mensagemEl ? mensagemEl.value.trim() : ""
     };
 
+    // Validação simples antes do POST
+    if (!formData.nome || !formData.email || !formData.mensagem || !formData.assunto) {
+      alert("Preencha os campos obrigatórios: nome, email, assunto e mensagem.");
+      return;
+    }
+
+    console.log("Enviando dados:", formData);
+
     try {
-      // Requisição para o backend (Node/Express)
       const response = await fetch("http://localhost:5104/api/contato", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
-      const data = await response.json();
+      // tenta extrair JSON com segurança
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (err) {
+        console.warn("Resposta não é JSON válido:", err);
+      }
+
+      console.log("Resposta do backend:", response.status, data);
 
       if (response.ok) {
-        // Mostra modal de sucesso (caso exista)
+        // Mostra mensagem de sucesso (se existir)
         if (successMessage) {
           successMessage.classList.add("active");
           document.body.style.overflow = "hidden";
-
           setTimeout(() => {
             successMessage.classList.remove("active");
             document.body.style.overflow = "auto";
             contactForm.reset();
           }, 3000);
         } else {
-          // Fallback: usa alert se não existir modal
-          alert("✅ " + data.msg);
+          // fallback
+          alert("✅ " + (data.mensagem || "Mensagem enviada com sucesso."));
           contactForm.reset();
         }
       } else {
-        alert("⚠️ " + (data.msg || "Erro ao enviar a mensagem."));
+        const errMsg = data.erro || data.message || "Erro ao enviar a mensagem.";
+        alert("⚠️ " + errMsg);
       }
     } catch (error) {
       console.error("Erro ao enviar:", error);
       alert("❌ Erro de conexão com o servidor.");
     }
   }
-;
+
+  // Remove listeners duplicados (caso o arquivo seja importado mais de uma vez)
+  contactForm.removeEventListener("submit", handleContactForm);
+  contactForm.addEventListener("submit", handleContactForm);
+});
+
 
 // Handle contact form submission
 function handleContactForm(e) {
