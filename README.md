@@ -1,8 +1,3 @@
-```sh
-Utilize o site <https://www.toptal.com/developers/gitignore> para gerar seu arquivo gitignore e apague este campo.
-
-Vide tutoriais do PI.
-```
 
 # FECAP - Fundação de Comércio Álvares Penteado
 
@@ -72,5 +67,5 @@ Há também 4 pastas que seguem da seguinte forma:
 ## 💻 Configuração para Desenvolvimento
 
 ## 📋 Licença/License
-
+A AlmaTach é uma organização internacional sem fins lucrativos que capacita as pessoas a desenvolver e sustentar o patrimônio comum de conhecimento e cultura compartilhados, essencial para enfrentarmos os desafios mais urgentes do mundo e criarmos um futuro melhor para todos.
 ## 🎓 Referências
