@@ -1,0 +1,265 @@
+/* RESET E CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e7a9e 0%, #4db8d8 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #2c3e50;
+}
+
+/* ÍCONE HOME */
+.home-icon {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 52px;
+    height: 52px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+}
+
+.home-icon:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.home-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: #1e7a9e;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    background-color: rgba(176, 196, 206, 0.96);
+    border-radius: 22px;
+    padding: 45px 55px;
+    width: 100%;
+    max-width: 680px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.6s ease forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* TÍTULO */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 22px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* CONTEÚDO DO FORMULÁRIO */
+.form-content {
+    display: flex;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+/* COLUNA ESQUERDA */
+.left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* COLUNA DIREITA */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 28px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+}
+
+/* CAMPOS E LABELS */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #2c3e50;
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+label .required {
+    color: #e74c3c;
+}
+
+input {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 122, 158, 0.3);
+    transform: translateY(-1px);
+}
+
+input::placeholder {
+    color: #95a5a6;
+}
+
+/* SEÇÃO DE DOAÇÃO */
+.donation-text {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.amount-input {
+    width: 150px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #e74c3c;
+}
+
+/* BOTÃO DE ENVIO */
+.submit-btn {
+    width: 180px;
+    padding: 14px;
+    background-color: #2c4a6e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.submit-btn:hover {
+    background-color: #1e3a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 700px) {
+    .container {
+        padding: 35px 25px;
+    }
+
+    .form-content {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .right-column {
+        padding: 15px;
+    }
+
+    .home-icon {
+        top: 18px;
+        left: 18px;
+        width: 46px;
+        height: 46px;
+    }
+
+    h1 {
+        font-size: 19px;
+    }
+
+    .submit-btn, .amount-input {
+        width: 100%;
+    }
+}
+
+
+  .home-icon-fixed {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f3;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    color: #0287c5; /* cor do ícone (pode ajustar) */
+    text-decoration: none;
+    z-index: 1200;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+
+  .home-icon-fixed:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+  }
+
+  /* // melhora o foco para acessibilidade */
+  .home-icon-fixed:focus {
+    outline: 3px solid rgba(2,135,197,0.18);
+    outline-offset: 2px;
+  }
+
+  /* Ajuste para telas pequenas */
+  @media (max-width: 420px) {
+    .home-icon-fixed { top: 8px; left: 8px; width: 40px; height: 40px; }
+    .home-icon-fixed svg { width: 18px; height: 18px; }
+  }
