@@ -13,3 +13,10 @@ npm -v
 
 npm i ou npm install
 npm run dev // Para startar a aplicação
+
+
+
+LINK VIDEO DEMONSTRATIVO
+
+https://youtu.be/XoSHjx0iv-c
+https://www.youtube.com/watch?v=XoSHjx0iv-c

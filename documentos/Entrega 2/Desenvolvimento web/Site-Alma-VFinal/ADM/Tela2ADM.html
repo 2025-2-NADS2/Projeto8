@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Tela2ADM.css">
+  <link rel="icon" type="image/png" href="../IMG/Logo Instituto Alma.png">
+  <title>Cards Editáveis - Transparência</title>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <a href="Adm-Home.html" class="home-icon" title="Ir para Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- CONTAINER PRINCIPAL -->
+  <div class="container">
+    <p class="page-title">Cards Editáveis - Transparência</p>
+
+    <div class="cards-container">
+      <!-- Card 1 -->
+      <div class="card">
+        <label>Nome</label>
+        <input type="text" maxlength="50" placeholder="Digite o nome">
+        <div class="char-count" data-type="nome">0 / 50</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <label>Título</label>
+        <input type="text" maxlength="25" placeholder="Digite o título">
+        <div class="char-count" data-type="titulo">0 / 25</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <label>Descrição</label>
+        <textarea maxlength="100" placeholder="Digite uma descrição"></textarea>
+        <div class="char-count" data-type="descricao">0 / 100</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <div class="upload">
+          <label>Carregar PDF</label>
+          <input type="file" accept="application/pdf">
+        </div>
+
+        <button>Salvar</button>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <label>Nome</label>
+        <input type="text" maxlength="50" placeholder="Digite o nome">
+        <div class="char-count" data-type="nome">0 / 50</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <label>Título</label>
+        <input type="text" maxlength="25" placeholder="Digite o título">
+        <div class="char-count" data-type="titulo">0 / 25</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <label>Descrição</label>
+        <textarea maxlength="100" placeholder="Digite uma descrição"></textarea>
+        <div class="char-count" data-type="descricao">0 / 100</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <div class="upload">
+          <label>Carregar PDF</label>
+          <input type="file" accept="application/pdf">
+        </div>
+
+        <button>Salvar</button>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <label>Nome</label>
+        <input type="text" maxlength="50" placeholder="Digite o nome">
+        <div class="char-count" data-type="nome">0 / 50</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <label>Título</label>
+        <input type="text" maxlength="25" placeholder="Digite o título">
+        <div class="char-count" data-type="titulo">0 / 25</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <label>Descrição</label>
+        <textarea maxlength="100" placeholder="Digite uma descrição"></textarea>
+        <div class="char-count" data-type="descricao">0 / 100</div>
+        <div class="limit-msg">Limite de caracteres atingido!</div>
+
+        <div class="upload">
+          <label>Carregar PDF</label>
+          <input type="file" accept="application/pdf">
+        </div>
+
+        <button>Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Atualiza contador de caracteres
+    document.querySelectorAll("input[maxlength], textarea[maxlength]").forEach((el) => {
+      el.addEventListener("input", (e) => {
+        const max = parseInt(e.target.getAttribute("maxlength"));
+        const length = e.target.value.length;
+        const type = e.target.getAttribute('maxlength') == '50' ? 'nome' : e.target.tagName === 'TEXTAREA' ? 'descricao' : 'titulo';
+        const parent = e.target.parentElement;
+        const counter = parent.querySelector(`.char-count[data-type="${type}"]`);
+        const limitMsg = counter.nextElementSibling;
+
+        counter.textContent = `${length} / ${max}`;
+
+        if (length >= max) {
+          counter.classList.add("limit");
+          limitMsg.classList.add("show");
+        } else {
+          counter.classList.remove("limit");
+          limitMsg.classList.remove("show");
+        }
+      });
+    });
+
+    // Mensagem de alerta
+    function showAlert(message, type = 'success') {
+      const alert = document.createElement('div');
+      alert.className = `alert ${type}`;
+      alert.textContent = message;
+      document.body.appendChild(alert);
+      setTimeout(() => alert.remove(), 3000);
+    }
+
+    // Envio do card
+    async function enviarCard(cardElement) {
+      const nome = cardElement.querySelector('input[type="text"]').value.trim();
+      const titulo = cardElement.querySelectorAll('input[type="text"]')[1].value.trim();
+      const descricao = cardElement.querySelector('textarea').value.trim();
+      const arquivo = cardElement.querySelector('input[type="file"]').files[0];
+
+      if (!nome || !titulo || !descricao || !arquivo) {
+        showAlert('⚠️ Preencha todos os campos e envie um PDF.', 'error');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('Nome', nome);
+      formData.append('Titulo', titulo);
+      formData.append('DescricaoTransparencia', descricao);
+      formData.append('Pdfs', arquivo);
+
+      try {
+        const res = await fetch('http://localhost:5104/api/Transparencia', {
+          method: 'POST',
+          body: formData
+        });
+
+        const json = await res.json();
+
+        if (res.ok) {
+          showAlert('✅ Enviado com sucesso!');
+          console.log('Resposta do backend:', json);
+        } else {
+          showAlert('❌ Erro ao enviar: ' + (json.mensagem || JSON.stringify(json)), 'error');
+        }
+      } catch (err) {
+        showAlert('⚠️ Erro de conexão: ' + err.message, 'error');
+      }
+    }
+
+    // Botões Salvar
+    document.querySelectorAll('.card button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        enviarCard(card);
+      });
+    });
+  </script>
+</body>
+</html>
